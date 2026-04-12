@@ -1,4 +1,5 @@
-import { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext } from 'react';
+import type { ReactNode } from 'react';
 import { useMovies } from '../hooks/useMovies';
 import type { CreateMovieInput, Movie, NetworkState } from '../types';
 
