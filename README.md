@@ -50,3 +50,4 @@ Peli-List/
 - [Componentes](docs/components.md)
 - [Hooks](docs/hooks.md)
 - [Metodologías Agile](docs/agile.md)
+- [Tablero Trello](https://trello.com/b/BAc7hq1U/peli-list)
