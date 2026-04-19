@@ -51,3 +51,8 @@ Peli-List/
 - [Hooks](docs/hooks.md)
 - [Metodologías Agile](docs/agile.md)
 - [Tablero Trello](https://trello.com/b/BAc7hq1U/peli-list)
+
+## URLs en producción
+
+- **Frontend:** https://peli-list.vercel.app
+- **Backend API:** https://peli-list-production.up.railway.app
