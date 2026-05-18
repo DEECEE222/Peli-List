@@ -1,31 +1,33 @@
 import type { Status } from '../types';
 
 interface FilterBarProps {
-  search: string;
-  onSearch: (v: string) => void;
   statusFilter: Status | 'all';
   onStatusFilter: (v: Status | 'all') => void;
+  total: number;
 }
 
-export function FilterBar({ search, onSearch, statusFilter, onStatusFilter }: FilterBarProps) {
+const filters: { value: Status | 'all'; label: string; icon: string }[] = [
+  { value: 'all',       label: 'Todas',      icon: '🎬' },
+  { value: 'pendiente', label: 'Pendientes', icon: '⏳' },
+  { value: 'vista',     label: 'Vistas',     icon: '✅' },
+  { value: 'favorita',  label: 'Favoritas',  icon: '❤️' },
+];
+
+export function FilterBar({ statusFilter, onStatusFilter, total }: FilterBarProps) {
   return (
-    <div className="flex flex-wrap gap-3 mb-6">
-      <input
-        value={search}
-        onChange={e => onSearch(e.target.value)}
-        placeholder="🔍 Buscar película..."
-        className="flex-1 min-w-48 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-purple-500"
-      />
-      <select
-        value={statusFilter}
-        onChange={e => onStatusFilter(e.target.value as Status | 'all')}
-        className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-purple-500"
-      >
-        <option value="all">Todas</option>
-        <option value="pendiente">Pendientes</option>
-        <option value="vista">Vistas</option>
-        <option value="favorita">Favoritas</option>
-      </select>
+    <div className="flex items-center gap-2 flex-wrap">
+      {filters.map(f => (
+        <button key={f.value} onClick={() => onStatusFilter(f.value)}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 border ${
+            statusFilter === f.value
+              ? 'bg-purple-600 border-purple-500 text-white shadow-lg shadow-purple-500/30 scale-105'
+              : 'bg-gray-900 border-gray-700 text-gray-400 hover:border-purple-500/50 hover:text-white hover:bg-gray-800'
+          }`}>
+          <span>{f.icon}</span>
+          <span>{f.label}</span>
+        </button>
+      ))}
+      <span className="ml-2 text-gray-600 text-sm font-medium">{total} película{total !== 1 ? 's' : ''}</span>
     </div>
   );
 }

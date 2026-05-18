@@ -4,12 +4,14 @@ const genreSchema = z.enum(['accion', 'comedia', 'drama', 'terror', 'ciencia-fic
 const statusSchema = z.enum(['vista', 'pendiente', 'favorita']);
 
 export const createMovieSchema = z.object({
-  title: z.string().min(1, 'El título es obligatorio').max(200).trim(),
+  title: z.string().min(1).max(200).trim(),
   year: z.number().int().min(1888).max(new Date().getFullYear() + 2),
   genre: genreSchema,
   status: statusSchema,
   rating: z.number().min(1).max(10).optional(),
   notes: z.string().max(500).optional(),
+  posterUrl: z.string().url().optional(),
+  tmdbId: z.number().int().positive().optional(),
 });
 
 export const updateMovieSchema = createMovieSchema.partial();

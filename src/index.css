@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease both;
+}
+
+@keyframes loadingBar {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+.animate-loadingBar {
+  animation: loadingBar 2.5s ease forwards;
+}
