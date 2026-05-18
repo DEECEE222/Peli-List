@@ -7,7 +7,7 @@ export interface AuthRequest extends Request {
 }
 
 export function authMiddleware(req: AuthRequest, res: Response, next: NextFunction): void {
-  const header = req.headers.authorization;
+  const header = req.headers['authorization'] as string | undefined;
   if (!header || !header.startsWith('Bearer ')) {
     res.status(401).json({ error: 'Token requerido', timestamp: new Date().toISOString() });
     return;

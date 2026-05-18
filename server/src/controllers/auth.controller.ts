@@ -31,8 +31,9 @@ export async function login(req: Request, res: Response): Promise<void> {
   }
 }
 
-export function me(req: AuthRequest, res: Response): void {
-  const user = authService.getById(req.userId!);
+export function me(req: Request, res: Response): void {
+  const userId = (req as AuthRequest).userId!;
+  const user = authService.getById(userId);
   if (!user) { res.status(404).json({ error: 'Usuario no encontrado', timestamp: ts() }); return; }
   res.json({ data: user, timestamp: ts() });
 }
